@@ -1,0 +1,236 @@
+﻿<Window x:Class="RejestWizyt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="Rejestr Wizyt" Height="600" Width="1000" Icon="shield.ico">
+    <TabControl>
+        <!-- Main Tab -->
+        <TabItem Header="Rejestr Wizyt">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBox x:Name="ImieTextBox" Width="120" Margin="5" Tag="Imię">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Resources>
+                                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                        <VisualBrush.Visual>
+                                            <Label Content="Imię" Foreground="Gray" />
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Style.Resources>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Background" Value="White" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <TextBox x:Name="NazwiskoTextBox" Width="120" Margin="5" Tag="Nazwisko">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Resources>
+                                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                        <VisualBrush.Visual>
+                                            <Label Content="Nazwisko" Foreground="Gray" />
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Style.Resources>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Background" Value="White" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <TextBox x:Name="DoKogoTextBox" Width="120" Margin="5" Tag="Do kogo">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Resources>
+                                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                        <VisualBrush.Visual>
+                                            <Label Content="Do kogo" Foreground="Gray" />
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Style.Resources>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Background" Value="White" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <Button Content="Wejście" Click="DodajWejscie_Click" Margin="5"/>
+                </StackPanel>
+
+                <GroupBox Header="Osoby w budynku" Grid.Row="1" Margin="0,0,0,10">
+                    <DataGrid x:Name="WizytyOtwarteGrid" 
+                              AutoGenerateColumns="True" 
+                              IsReadOnly="True" 
+                              SelectionMode="Single"
+                              CanUserResizeColumns="True"
+                              CanUserSortColumns="True"
+                              GridLinesVisibility="Horizontal"
+                              AlternatingRowBackground="LightGray"
+                              ScrollViewer.CanContentScroll="True"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+                </GroupBox>
+
+                <GroupBox Header="Historia wizyt (filtr)" Grid.Row="2" Margin="0,0,0,10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,5">
+                            <TextBox x:Name="FiltrNazwiskoTextBox" Width="120" Margin="5" Tag="Nazwisko">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Style.Resources>
+                                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                                <VisualBrush.Visual>
+                                                    <Label Content="Nazwisko" Foreground="Gray" />
+                                                </VisualBrush.Visual>
+                                            </VisualBrush>
+                                        </Style.Resources>
+                                        <Style.Triggers>
+                                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                            </Trigger>
+                                            <Trigger Property="Text" Value="{x:Null}">
+                                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                            </Trigger>
+                                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                                <Setter Property="Background" Value="White" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                            <TextBox x:Name="FiltrDoKogoTextBox" Width="120" Margin="5" Tag="Do kogo">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Style.Resources>
+                                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                                <VisualBrush.Visual>
+                                                    <Label Content="Do kogo" Foreground="Gray" />
+                                                </VisualBrush.Visual>
+                                            </VisualBrush>
+                                        </Style.Resources>
+                                        <Style.Triggers>
+                                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                            </Trigger>
+                                            <Trigger Property="Text" Value="{x:Null}">
+                                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                            </Trigger>
+                                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                                <Setter Property="Background" Value="White" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                            <DatePicker x:Name="DataOdPicker" Margin="5"/>
+                            <DatePicker x:Name="DataDoPicker" Margin="5"/>
+                            <Button Content="Szukaj" Click="FiltrujHistorie_Click" Margin="5"/>
+                        </StackPanel>
+
+                        <DataGrid Grid.Row="1" x:Name="HistoriaGrid" 
+                                  AutoGenerateColumns="True" 
+                                  IsReadOnly="True"
+                                  CanUserResizeColumns="True"
+                                  CanUserSortColumns="True"
+                                  GridLinesVisibility="Horizontal"
+                                  AlternatingRowBackground="LightGray"
+                                  ScrollViewer.CanContentScroll="True"
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+                    </Grid>
+                </GroupBox>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="3">
+                    <Button Content="Zaznaczony: Wyjście" Click="DodajWyjscie_Click" Margin="5"/>
+                    <Button Content="Usuń zaznaczoną" Click="UsunWizyte_Click" Margin="5" Background="LightCoral"/>
+                    <Button Content="Eksport CSV (filtr)" Click="EksportCsv_Click" Margin="5"/>
+                    <Button Content="Eksport PDF (filtr)" Click="EksportPdf_Click" Margin="5"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+
+        <!-- Settings Tab -->
+        <TabItem Header="Ustawienia">
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Ustawienia połączenia z bazą danych" FontSize="16" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+                    <Label Content="Adres IP serwera:" Width="150" VerticalAlignment="Center"/>
+                    <TextBox x:Name="ServerIpTextBox" Width="200" Margin="5" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
+                    <Label Content="Nazwa bazy danych:" Width="150" VerticalAlignment="Center"/>
+                    <TextBox x:Name="DatabaseNameTextBox" Width="200" Margin="5" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,10">
+                    <Label Content="Nazwa instancji:" Width="150" VerticalAlignment="Center"/>
+                    <TextBox x:Name="InstanceNameTextBox" Width="200" Margin="5" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,0,0,20">
+                    <Button Content="Testuj połączenie" Click="TestConnection_Click" Margin="5" Background="LightBlue"/>
+                    <Button Content="Zapisz ustawienia" Click="SaveSettings_Click" Margin="5" Background="LightGreen"/>
+                    <Button Content="Przywróć domyślne" Click="ResetSettings_Click" Margin="5" Background="LightYellow"/>
+                </StackPanel>
+
+                <TextBlock Grid.Row="5" x:Name="ConnectionStatusTextBlock" Text="Status: Nie testowano" Margin="0,0,0,10"/>
+
+                <GroupBox Grid.Row="6" Header="Informacje o połączeniu">
+                    <TextBlock x:Name="ConnectionInfoTextBlock" TextWrapping="Wrap" 
+                               Text="Aktualny connection string zostanie wyświetlony tutaj po zapisaniu ustawień."
+                               Margin="10"/>
+                </GroupBox>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>
