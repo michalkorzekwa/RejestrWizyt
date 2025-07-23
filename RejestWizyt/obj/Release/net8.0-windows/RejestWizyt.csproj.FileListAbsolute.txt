@@ -67,3 +67,6 @@ C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\obj\Release\net8.0-wind
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\obj\Release\net8.0-windows\RejestWizyt.pdb
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\obj\Release\net8.0-windows\RejestWizyt.genruntimeconfig.cache
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\obj\Release\net8.0-windows\ref\RejestWizyt.dll
+C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Release\net8.0-windows\RejestWizyt.dll.config
+C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\obj\Release\net8.0-windows\LoginWindow.baml
+C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\obj\Release\net8.0-windows\LoginWindow.g.cs

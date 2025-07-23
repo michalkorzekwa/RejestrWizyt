@@ -3,18 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="Rejestr Wizyt" Height="600" Width="1000" Icon="shield.ico">
-    <TabControl>
+    <TabControl x:Name="TabControl">
         <!-- Main Tab -->
         <TabItem Header="Rejestr Wizyt">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <!-- User Info Bar -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10" Background="LightBlue" >
+                    <TextBlock x:Name="CurrentUserTextBlock" Text="Użytkownik: Niezalogowany" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <Button Content="Wyloguj" Click="Logout_Click" Margin="20,0,0,0" x:Name="LogoutButton" IsEnabled="False"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
                     <TextBox x:Name="ImieTextBox" Width="120" Margin="5" Tag="Imię">
                         <TextBox.Style>
                             <Style TargetType="TextBox">
@@ -87,10 +94,60 @@
                             </Style>
                         </TextBox.Style>
                     </TextBox>
+                    <TextBox x:Name="FirmaTextBox" Width="120" Margin="5" Tag="Firma">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Resources>
+                                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                        <VisualBrush.Visual>
+                                            <Label Content="Firma" Foreground="Gray" />
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Style.Resources>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Background" Value="White" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+
+                    <TextBox x:Name="UwagiTextBox" Width="120" Margin="5" Tag="Uwagi">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Resources>
+                                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                        <VisualBrush.Visual>
+                                            <Label Content="Uwagi" Foreground="Gray" />
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Style.Resources>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Background" Value="White" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+
                     <Button Content="Wejście" Click="DodajWejscie_Click" Margin="5"/>
                 </StackPanel>
 
-                <GroupBox Header="Osoby w budynku" Grid.Row="1" Margin="0,0,0,10">
+                <GroupBox Header="Osoby w budynku" Grid.Row="2" Margin="0,0,0,10">
                     <DataGrid x:Name="WizytyOtwarteGrid" 
                               AutoGenerateColumns="True" 
                               IsReadOnly="True" 
@@ -104,7 +161,7 @@
                               ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
                 </GroupBox>
 
-                <GroupBox Header="Historia wizyt (filtr)" Grid.Row="2" Margin="0,0,0,10">
+                <GroupBox Header="Historia wizyt (filtr)" Grid.Row="3" Margin="0,0,0,10">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -160,6 +217,31 @@
                                     </Style>
                                 </TextBox.Style>
                             </TextBox>
+                            <TextBox x:Name="FiltrFirmaTextBox" Width="120" Margin="5" Tag="Firma">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Style.Resources>
+                                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                                <VisualBrush.Visual>
+                                                    <Label Content="Firma" Foreground="Gray" />
+                                                </VisualBrush.Visual>
+                                            </VisualBrush>
+                                        </Style.Resources>
+                                        <Style.Triggers>
+                                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                            </Trigger>
+                                            <Trigger Property="Text" Value="{x:Null}">
+                                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                            </Trigger>
+                                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                                <Setter Property="Background" Value="White" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+
                             <DatePicker x:Name="DataOdPicker" Margin="5"/>
                             <DatePicker x:Name="DataDoPicker" Margin="5"/>
                             <Button Content="Szukaj" Click="FiltrujHistorie_Click" Margin="5"/>
@@ -178,9 +260,9 @@
                     </Grid>
                 </GroupBox>
 
-                <StackPanel Orientation="Horizontal" Grid.Row="3">
+                <StackPanel Orientation="Horizontal" Grid.Row="4">
                     <Button Content="Zaznaczony: Wyjście" Click="DodajWyjscie_Click" Margin="5"/>
-                    <Button Content="Usuń zaznaczoną" Click="UsunWizyte_Click" Margin="5" Background="LightCoral"/>
+                    <Button x:Name="UsunWizyteButton" Content="Usuń zaznaczoną" Click="UsunWizyte_Click" Margin="5" Background="LightCoral" IsEnabled="False"/>
                     <Button Content="Eksport CSV (filtr)" Click="EksportCsv_Click" Margin="5"/>
                     <Button Content="Eksport PDF (filtr)" Click="EksportPdf_Click" Margin="5"/>
                 </StackPanel>
@@ -189,47 +271,144 @@
 
         <!-- Settings Tab -->
         <TabItem Header="Ustawienia">
-            <Grid Margin="20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="Ustawienia połączenia z bazą danych" FontSize="16" FontWeight="Bold" Margin="0,0,0,20"/>
+                    <!-- Database Settings -->
+                    <TextBlock Grid.Row="0" Text="Ustawienia połączenia z bazą danych" FontSize="16" FontWeight="Bold" Margin="0,0,0,20"/>
 
-                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
-                    <Label Content="Adres IP serwera:" Width="150" VerticalAlignment="Center"/>
-                    <TextBox x:Name="ServerIpTextBox" Width="200" Margin="5" VerticalAlignment="Center"/>
-                </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+                        <Label Content="Adres IP serwera:" Width="150" VerticalAlignment="Center"/>
+                        <TextBox x:Name="ServerIpTextBox" Width="200" Margin="5" VerticalAlignment="Center"/>
+                    </StackPanel>
 
-                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
-                    <Label Content="Nazwa bazy danych:" Width="150" VerticalAlignment="Center"/>
-                    <TextBox x:Name="DatabaseNameTextBox" Width="200" Margin="5" VerticalAlignment="Center"/>
-                </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
+                        <Label Content="Nazwa bazy danych:" Width="150" VerticalAlignment="Center"/>
+                        <TextBox x:Name="DatabaseNameTextBox" Width="200" Margin="5" VerticalAlignment="Center"/>
+                    </StackPanel>
 
-                <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,10">
-                    <Label Content="Nazwa instancji:" Width="150" VerticalAlignment="Center"/>
-                    <TextBox x:Name="InstanceNameTextBox" Width="200" Margin="5" VerticalAlignment="Center"/>
-                </StackPanel>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,10">
+                        <Label Content="Nazwa instancji:" Width="150" VerticalAlignment="Center"/>
+                        <TextBox x:Name="InstanceNameTextBox" Width="200" Margin="5" VerticalAlignment="Center"/>
+                    </StackPanel>
 
-                <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,0,0,20">
-                    <Button Content="Testuj połączenie" Click="TestConnection_Click" Margin="5" Background="LightBlue"/>
-                    <Button Content="Zapisz ustawienia" Click="SaveSettings_Click" Margin="5" Background="LightGreen"/>
-                    <Button Content="Przywróć domyślne" Click="ResetSettings_Click" Margin="5" Background="LightYellow"/>
-                </StackPanel>
+                    <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,0,0,20">
+                        <Button Content="Testuj połączenie" Click="TestConnection_Click" Margin="5" Background="LightBlue"/>
+                        <Button Content="Zapisz ustawienia" Click="SaveSettings_Click" Margin="5" Background="LightGreen"/>
+                        <Button Content="Przywróć domyślne" Click="ResetSettings_Click" Margin="5" Background="LightYellow"/>
+                    </StackPanel>
 
-                <TextBlock Grid.Row="5" x:Name="ConnectionStatusTextBlock" Text="Status: Nie testowano" Margin="0,0,0,10"/>
+                    <TextBlock Grid.Row="5" x:Name="ConnectionStatusTextBlock" Text="Status: Nie testowano" Margin="0,0,0,10"/>
 
-                <GroupBox Grid.Row="6" Header="Informacje o połączeniu">
-                    <TextBlock x:Name="ConnectionInfoTextBlock" TextWrapping="Wrap" 
+                    <!-- Font Size Settings -->
+                    <Separator Grid.Row="6" Margin="0,10"/>
+                    <TextBlock Grid.Row="7" Text="Ustawienia interfejsu" FontSize="16" FontWeight="Bold" Margin="0,10,0,10"/>
+
+                    <StackPanel Grid.Row="8" Orientation="Horizontal" Margin="0,0,0,20">
+                        <Label Content="Rozmiar czcionki:" Width="150" VerticalAlignment="Center"/>
+                        <Slider x:Name="FontSizeSlider" Width="200" Margin="5" Minimum="10" Maximum="24" Value="12" 
+                            ValueChanged="FontSizeSlider_ValueChanged" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="FontSizeValue" Text="12" Width="30" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+
+                    <!-- User Management -->
+                    
+
+                    <GroupBox Grid.Row="12" Header="Informacje o połączeniu" Margin="0,10,0,0">
+                        <TextBlock x:Name="ConnectionInfoTextBlock" TextWrapping="Wrap" 
                                Text="Aktualny connection string zostanie wyświetlony tutaj po zapisaniu ustawień."
                                Margin="10"/>
-                </GroupBox>
+                    </GroupBox>
+                </Grid>
+            </ScrollViewer>
+        </TabItem>
+
+        <!-- Logs Tab -->
+        <TabItem Header="Logi">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                    <Button Content="Odśwież logi" Click="RefreshLogs_Click" Margin="5" Background="LightBlue"/>
+                    <Button Content="Wyczyść logi" Click="ClearLogs_Click" Margin="5" Background="LightCoral" x:Name="ClearLogsButton" IsEnabled="False"/>
+                    <ComboBox x:Name="LogLevelFilter" Width="120" Margin="10,0,0,0" SelectionChanged="LogLevelFilter_SelectionChanged">
+                        <ComboBoxItem Content="Wszystkie" IsSelected="True"/>
+                        <ComboBoxItem Content="Info"/>
+                        <ComboBoxItem Content="Warning"/>
+                        <ComboBoxItem Content="Error"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <DataGrid Grid.Row="1" x:Name="LogsGrid" 
+                          AutoGenerateColumns="False" 
+                          IsReadOnly="True"
+                          CanUserResizeColumns="True"
+                          CanUserSortColumns="True"
+                          GridLinesVisibility="Horizontal"
+                          AlternatingRowBackground="LightGray"
+                          ScrollViewer.CanContentScroll="True"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Data/Czas" Binding="{Binding Timestamp, StringFormat=dd.MM.yyyy HH:mm:ss}" Width="150"/>
+                        <DataGridTextColumn Header="Poziom" Binding="{Binding Level}" Width="80"/>
+                        <DataGridTextColumn Header="Użytkownik" Binding="{Binding Username}" Width="120"/>
+                        <DataGridTextColumn Header="Akcja" Binding="{Binding Action}" Width="150"/>
+                        <DataGridTextColumn Header="Szczegóły" Binding="{Binding Details}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <TextBlock Grid.Row="2" x:Name="LogsStatusTextBlock" Text="Gotowe" Margin="0,10,0,0"/>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Użytkownicy" x:Name="UsersTab">
+            <Grid Margin="10">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <Label Content="Nowy użytkownik:" Width="120" VerticalAlignment="Center"/>
+                        <TextBox x:Name="NewUsernameTextBox" Width="150" Margin="5" VerticalAlignment="Center"/>
+                        <Label Content="Hasło:" Width="60" VerticalAlignment="Center"/>
+                        <PasswordBox x:Name="NewPasswordBox" Width="150" Margin="5" VerticalAlignment="Center"/>
+                        <CheckBox x:Name="IsAdminCheckBox" Content="Administrator" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <Button Content="Dodaj" Click="AddUser_Click" Margin="10,0,0,0" Background="LightGreen"/>
+                    </StackPanel>
+
+                    <DataGrid x:Name="UsersGrid" Height="300" Margin="0,10,0,0" 
+                      AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Użytkownik" Binding="{Binding Username}" Width="*"/>
+                            <DataGridTextColumn Header="Rola" Binding="{Binding Role}" Width="100"/>
+                            <DataGridTextColumn Header="Utworzony" Binding="{Binding CreatedAt, StringFormat=dd.MM.yyyy HH:mm}" Width="150"/>
+                            <DataGridTemplateColumn Header="Akcje" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Usuń" Click="DeleteUser_Click" Background="LightCoral" 
+                                    Tag="{Binding Id}" Margin="2"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
             </Grid>
         </TabItem>
     </TabControl>

@@ -2,6 +2,7 @@ C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Release\net8.0-wind
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Release\net8.0-windows\publish\RejestWizyt.dll
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Release\net8.0-windows\publish\RejestWizyt.deps.json
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Release\net8.0-windows\publish\RejestWizyt.runtimeconfig.json
+C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Release\net8.0-windows\publish\RejestWizyt.dll.config
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Release\net8.0-windows\publish\RejestWizyt.pdb
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Release\net8.0-windows\publish\Azure.Core.dll
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Release\net8.0-windows\publish\Azure.Identity.dll

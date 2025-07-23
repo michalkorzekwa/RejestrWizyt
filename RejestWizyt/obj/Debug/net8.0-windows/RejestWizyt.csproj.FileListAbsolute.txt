@@ -1,4 +1,5 @@
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Debug\net8.0-windows\RejestWizyt.exe
+C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Debug\net8.0-windows\RejestWizyt.dll.config
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Debug\net8.0-windows\RejestWizyt.deps.json
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Debug\net8.0-windows\RejestWizyt.runtimeconfig.json
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Debug\net8.0-windows\RejestWizyt.dll
@@ -52,7 +53,9 @@ C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Debug\net8.0-window
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Debug\net8.0-windows\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\bin\Debug\net8.0-windows\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\obj\Debug\net8.0-windows\RejestWizyt.csproj.AssemblyReference.cache
+C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\obj\Debug\net8.0-windows\LoginWindow.baml
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\obj\Debug\net8.0-windows\LoginWindow.g.cs
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\obj\Debug\net8.0-windows\MainWindow.g.cs
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\obj\Debug\net8.0-windows\App.g.cs
 C:\Users\m.korzekwa\source\repos\RejestWizyt\RejestWizyt\obj\Debug\net8.0-windows\RejestWizyt_MarkupCompile.cache
